@@ -92,6 +92,17 @@ section {
   transition: ease 0.3s all;
 }
 
+ /* responsive navbar on small screens */
+@media screen and (max-width: 600px) {
+  .navbar__menu ul {
+    text-align: center;
+  }
+
+  .navbar__menu li {
+    display: block;
+  }
+}
+
 /* Header Styles */
 .page__header {
   background: #fff;
