@@ -41,16 +41,24 @@ const sections = [...document.querySelectorAll("section")];
 // build the nav
 
 sections.map(section => {
-  const listItem = document.createElement("li");
-  const link = document.createElement("a");
-  
-  link.classList.add("menu__link");
-  link.href = `#${section.id}`;
-  link.textContent = section.dataset.nav;
+	const listItem = document.createElement("li");
+	const link = document.createElement("a");
 
-  // add link to li element then append li to fragment
-  listItem.appendChild(link);
+	link.classList.add("menu__link");
+	link.href = `#${section.id}`;
+	link.textContent = section.dataset.nav;
+
+	// add link to li element then append li to fragment
+	listItem.appendChild(link);
 	fragment.appendChild(listItem);
+
+	// add smooth scroll to navbar links
+	link.addEventListener("click", event => {
+		event.preventDefault();
+		section.scrollIntoView({
+			behavior: "smooth",
+		});
+	});
 });
 navbar.appendChild(fragment);
 
