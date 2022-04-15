@@ -64,6 +64,20 @@ navbar.appendChild(fragment);
 
 
 // Add class 'active' to section when near top of viewport
+window.addEventListener("scroll", () => {
+	sections.map(section => {
+		const sectionTop = section.getBoundingClientRect().top;
+		const link = document.querySelector(`a[href="#${section.id}"]`);
+
+		if (sectionTop >= 0 && sectionTop <= 300) {
+			section.classList.add("your-active-class");
+			link.classList.add("active");
+		} else {
+			section.classList.remove("your-active-class");
+			link.classList.remove("active");
+		}
+	});
+});
 
 // Scroll to anchor ID using scrollTO event
 
