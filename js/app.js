@@ -23,6 +23,9 @@
  *
  */
 
+const navbar = document.getElementById("navbar__list");
+const fragment = document.createDocumentFragment();
+const sections = [...document.querySelectorAll("section")];
 /**
  * End Global Variables
  * Start Helper Functions
@@ -37,6 +40,21 @@
 
 // build the nav
 
+sections.map(section => {
+  const listItem = document.createElement("li");
+  const link = document.createElement("a");
+  
+  link.classList.add("menu__link");
+  link.href = `#${section.id}`;
+  link.textContent = section.dataset.nav;
+
+  // add link to li element then append li to fragment
+  listItem.appendChild(link);
+	fragment.appendChild(listItem);
+});
+navbar.appendChild(fragment);
+
+
 // Add class 'active' to section when near top of viewport
 
 // Scroll to anchor ID using scrollTO event
@@ -50,5 +68,6 @@
 // Build menu
 
 // Scroll to section on link click
-
 // Set sections as active
+
+
