@@ -32,6 +32,24 @@ const sections = [...document.querySelectorAll("section")];
  *
  */
 
+// detect if section is in viewport
+const isSectionInViewport = (section) => {
+  const sectionPosition = section.getBoundingClientRect();
+  return sectionPosition.top >= 0 && sectionPosition.top <= 300;
+}
+
+// toggle active class on section
+const toggleActiveClass = () => {
+  sections.map(section => {
+		if(isSectionInViewport(section)) {
+        section.classList.add("your-active-class");
+      }
+      else {
+        section.classList.remove("your-active-class");
+      }
+	});
+}
+
 /**
  * End Helper Functions
  * Begin Main Functions
@@ -64,20 +82,7 @@ navbar.appendChild(fragment);
 
 
 // Add class 'active' to section when near top of viewport
-window.addEventListener("scroll", () => {
-	sections.map(section => {
-		const sectionTop = section.getBoundingClientRect().top;
-		const link = document.querySelector(`a[href="#${section.id}"]`);
-
-		if (sectionTop >= 0 && sectionTop <= 300) {
-			section.classList.add("your-active-class");
-			link.classList.add("active");
-		} else {
-			section.classList.remove("your-active-class");
-			link.classList.remove("active");
-		}
-	});
-});
+window.addEventListener("scroll", toggleActiveClass);
 
 // Scroll to anchor ID using scrollTO event
 
@@ -90,6 +95,7 @@ window.addEventListener("scroll", () => {
 // Build menu
 
 // Scroll to section on link click
+
 // Set sections as active
 
 
